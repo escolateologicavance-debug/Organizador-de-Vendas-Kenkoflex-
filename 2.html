@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Relação de Vendas</title>
+
+<style>
+
+/* =========================================================
+CONFIGURAÇÃO DA FOLHA
+========================================================= */
+
+@page {
+size: A4 portrait;
+margin: 8mm;
+}
+
+• {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+padding: 0;
+background: #ffffff;
+color: #000000;
+
+font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+FOLHA
+========================================================= */
+
+.folha {
+
+width: 100%;
+max-width: 194mm;
+
+margin: 0 auto;
+
+padding: 4mm 0;
+
+}
+
+/* =========================================================
+CABEÇALHO PRINCIPAL
+========================================================= */
+
+.topo {
+
+width: 100%;
+
+display: flex;
+
+align-items: flex-end;
+
+justify-content: space-between;
+
+margin-bottom: 3px;
+
+}
+
+.vendedor {
+
+display: flex;
+
+align-items: flex-end;
+
+flex: 1;
+
+font-size: 11px;
+
+font-weight: bold;
+
+}
+
+.linha-vendedor {
+
+flex: 1;
+
+height: 18px;
+
+border-bottom: 1px solid #000;
+
+margin-left: 4px;
+
+}
+
+.vendas {
+
+font-size: 17px;
+
+font-weight: bold;
+
+margin-left: 10px;
+
+}
+
+/* =========================================================
+ÁREA SUPERIOR
+========================================================= */
+
+.area-superior {
+
+width: 100%;
+
+display: grid;
+
+grid-template-columns: 70% 30%;
+
+border-top: 1px solid #000;
+
+}
+
+/* =========================================================
+TABELA DE CLIENTE
+========================================================= */
+
+.cliente {
+
+width: 100%;
+
+border-collapse: collapse;
+
+table-layout: fixed;
+
+}
+
+.cliente td {
+
+border: 1px solid #000;
+
+height: 32px;
+
+text-align: center;
+
+vertical-align: middle;
+
+font-size: 10px;
+
+}
+
+.cliente .titulo-coluna {
+
+height: 33px;
+
+font-size: 10px;
+
+font-weight: bold;
+
+}
+
+.col-data {
+
+width: 15%;
+
+}
+
+.col-nome {
+
+width: 52%;
+
+}
+
+.col-cidade {
+
+width: 33%;
+
+}
+
+/* =========================================================
+CAMPOS DO VEÍCULO
+========================================================= */
+
+.dados {
+
+border-left: 0;
+
+}
+
+.dado {
+
+height: 32px;
+
+display: flex;
+
+align-items: center;
+
+padding: 0 8px;
+
+font-size: 10px;
+
+font-weight: bold;
+
+}
+
+.linha-dado {
+
+flex: 1;
+
+height: 18px;
+
+border-bottom: 1px solid #000;
+
+margin-left: 5px;
+
+}
+
+/* =========================================================
+TABELA PRINCIPAL
+========================================================= */
+
+.tabela-vendas {
+
+width: 100%;
+
+border-collapse: collapse;
+
+table-layout: fixed;
+
+}
+
+.tabela-vendas th,
+.tabela-vendas td {
+
+border: 1px solid #000;
+
+padding: 0;
+
+text-align: center;
+
+vertical-align: middle;
+
+}
+
+/* =========================================================
+CABEÇALHO DAS COLUNAS
+========================================================= */
+
+.tabela-vendas th {
+
+height: 42px;
+
+font-size: 8px;
+
+line-height: 1.05;
+
+font-weight: bold;
+
+}
+
+/* =========================================================
+LARGURA DAS COLUNAS
+========================================================= */
+
+.data {
+width: 10%;
+}
+
+.nome {
+width: 35%;
+}
+
+.cidade {
+width: 10%;
+}
+
+.valor-venda {
+width: 8%;
+}
+
+.valor-entrada {
+width: 8%;
+}
+
+.qtde-parc {
+width: 7%;
+}
+
+.valor-parcela {
+width: 8%;
+}
+
+.chbl {
+width: 7%;
+}
+
+.numero-colchao {
+width: 10%;
+}
+
+/* =========================================================
+LINHAS PARA PREENCHIMENTO
+========================================================= */
+
+.tabela-vendas td {
+
+height: 27px;
+
+font-size: 9px;
+
+}
+
+.tabela-vendas input {
+
+width: 100%;
+
+height: 26px;
+
+border: none;
+
+outline: none;
+
+background: transparent;
+
+text-align: center;
+
+font-family: Arial, Helvetica, sans-serif;
+
+font-size: 9px;
+
+padding: 0 2px;
+
+}
+
+/* =========================================================
+CAMPOS DE TEXTO MAIORES
+========================================================= */
+
+.tabela-vendas .campo-texto {
+
+text-align: left;
+
+padding-left: 3px;
+
+}
+
+/* =========================================================
+BOTÕES
+========================================================= */
+
+.botoes {
+
+display: flex;
+
+justify-content: center;
+
+gap: 10px;
+
+margin-top: 18px;
+
+}
+
+button {
+
+border: 1px solid #000;
+
+border-radius: 5px;
+
+background: #000;
+
+color: #fff;
+
+padding: 10px 22px;
+
+font-size: 14px;
+
+cursor: pointer;
+
+}
+
+button.limpar {
+
+background: #fff;
+
+color: #000;
+
+}
+
+/* =========================================================
+RESPONSIVIDADE
+========================================================= */
+
+@media screen and (max-width: 600px) {
+
+.folha {
+
+width: 100%;
+
+padding: 10px 5px;
+
+}
+
+.vendedor {
+
+font-size: 10px;
+
+}
+
+.vendas {
+
+font-size: 15px;
+
+}
+
+.cliente td,
+.dado {
+
+font-size: 8px;
+
+}
+
+.tabela-vendas th {
+
+font-size: 7px;
+
+}
+
+.tabela-vendas td {
+
+height: 28px;
+
+}
+
+.tabela-vendas input {
+
+font-size: 8px;
+
+}
+
+}
+
+/* =========================================================
+IMPRESSÃO
+========================================================= */
+
+@media print {
+
+body {
+
+background: #fff;
+
+}
+
+.folha {
+
+width: 100%;
+
+max-width: none;
+
+margin: 0;
+
+padding: 0;
+
+}
+
+.botoes {
+
+display: none;
+
+}
+
+input {
+
+color: #000;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="folha">
+
+<!-- =====================================================
+CABEÇALHO
+====================================================== -->
+
+<div class="topo">
+
+<div class="vendedor">
+
+VENDEDOR:
+
+<span class="linha-vendedor"></span>
+
+</div>
+
+<div class="vendas">
+
+VENDAS
+
+</div>
+
+</div>
+
+<!-- =====================================================
+ÁREA SUPERIOR
+====================================================== -->
+
+<div class="area-superior">
+
+<!-- ================================================
+CLIENTE
+================================================= -->
+
+<table class="cliente">
+
+<tr>
+
+<td class="titulo-coluna col-data">
+DATA
+</td>
+
+<td class="titulo-coluna col-nome">
+NOME CLIENTE
+</td>
+
+<td class="titulo-coluna col-cidade">
+CIDADE
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+</tr>
+
+</table>
+
+<!-- ================================================
+DADOS DO CARRO
+================================================= -->
+
+<div class="dados">
+
+<div class="dado">
+
+MÊS:
+
+<span class="linha-dado"></span>
+
+</div>
+
+<div class="dado">
+
+PLACA:
+
+<span class="linha-dado"></span>
+
+</div>
+
+<div class="dado">
+
+KM CARRO:
+
+<span class="linha-dado"></span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+TABELA DE VENDAS
+====================================================== -->
+
+<table class="tabela-vendas">
+
+<thead>
+
+<tr>
+
+<th class="data">
+DATA
+</th>
+
+<th class="nome">
+NOME CLIENTE
+</th>
+
+<th class="cidade">
+CIDADE
+</th>
+
+<th class="valor-venda">
+VLR TOTAL<br>
+VENDA
+</th>
+
+<th class="valor-entrada">
+VLR<br>
+ENTRADA
+</th>
+
+<th class="qtde-parc">
+QTDE<br>
+PARC
+</th>
+
+<th class="valor-parcela">
+VLR<br>
+PARCELA
+</th>
+
+<th class="chbl">
+CH/BL
+</th>
+
+<th class="numero-colchao">
+Nº COLCHÃO
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<!-- =====================================================
+LINHAS DE VENDAS
+====================================================== -->
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+
+</tbody>
+
+</table>
+
+<!-- =====================================================
+BOTÕES
+====================================================== -->
+
+<div class="botoes">
+
+<button onclick="window.print()">
+🖨️ IMPRIMIR
+</button>
+
+<button
+class="limpar"
+onclick="limparFormulario()">
+
+LIMPAR
+
+</button>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+JAVASCRIPT
+====================================================== -->
+
+<script>
+
+function limparFormulario() {
+
+const campos =
+document.querySelectorAll("input");
+
+campos.forEach(function(campo) {
+
+campo.value = "";
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>

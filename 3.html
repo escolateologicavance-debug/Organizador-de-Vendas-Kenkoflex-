@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recibo do Indicador</title>
+<style>
+@page { size: A4 portrait; margin: 8mm; }
+* { box-sizing: border-box; }
+body { margin:0; padding:0; background:white; color:#000; font-family:"Times New Roman",Times,serif; }
+.folha { width:100%; max-width:194mm; margin:auto; }
+.recibo { width:100%; padding:2mm 2mm 1mm 2mm; }
+.titulo { width:100%; height:9mm; border:1px solid #999; background:#eee; display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:bold; margin-bottom:5mm; }
+.linha { display:flex; align-items:center; width:100%; font-size:15px; font-weight:bold; margin-bottom:2mm; }
+.data { width:50%; }
+.valor { width:50%; text-align:right; }
+.valor .linha-input { width:55%; }
+.campo { display:flex; align-items:center; white-space:nowrap; margin-bottom:1.8mm; font-size:14px; font-weight:bold; }
+.linha-input { display:inline-block; height:18px; border-bottom:1px solid #000; margin-left:4px; padding:0 2px; vertical-align:middle; }
+input.linha-input { border:0; border-bottom:1px solid #000; outline:none; background:transparent; font-family:"Times New Roman",Times,serif; font-size:14px; font-weight:normal; }
+.indicador-linha { width:calc(100% - 100px); }
+.cpf { width:43%; }
+.telef { width:57%; }
+.cpf .linha-input { width:calc(100% - 48px); }
+.telef .linha-input { width:calc(100% - 55px); }
+.endereco { width:100%; }
+.endereco .linha-input { width:calc(100% - 43px); }
+.cidade { width:35%; }
+.estado { width:31%; }
+.vendedor { width:34%; }
+.cidade .linha-input { width:calc(100% - 63px); }
+.estado .linha-input { width:calc(100% - 62px); }
+.vendedor .linha-input { width:calc(100% - 78px); }
+
+.pix-titulo { text-align:center; font-size:14px; font-weight:bold; margin-top:2mm; margin-bottom:1mm; }
+.pix-tabela { width:100%; border-collapse:collapse; table-layout:fixed; }
+.pix-tabela th,.pix-tabela td { border:1px solid #000; text-align:center; vertical-align:middle; font-size:13px; }
+.pix-tabela th { height:6mm; font-weight:bold; }
+.pix-tabela td { height:9mm; }
+.pix-tabela th:nth-child(1) { width:50%; }
+.pix-tabela th:nth-child(2) { width:15%; }
+.pix-tabela th:nth-child(3) { width:35%; }
+.pix-input { width:100%; height:28px; border:none; outline:none; text-align:center; font-family:"Times New Roman",Times,serif; font-size:13px; background:transparent; }
+
+.pix-observacao { text-align:center; font-size:12px; margin-top:1mm; }
+.clientes-titulo { text-align:center; font-size:13px; font-weight:bold; margin-top:3mm; margin-bottom:1mm; }
+.clientes { width:100%; border-collapse:collapse; table-layout:fixed; }
+.clientes th,.clientes td { border:1px solid #000; height:6.5mm; padding:0 4px; font-size:13px; vertical-align:middle; }
+.clientes th { font-weight:bold; text-align:left; }
+.clientes th:nth-child(1) { width:60%; }
+.clientes th:nth-child(2) { width:20%; }
+.clientes th:nth-child(3) { width:20%; }
+.clientes input { width:100%; height:24px; border:none; outline:none; font-family:"Times New Roman",Times,serif; font-size:13px; background:transparent; }
+.aviso { text-align:center; font-size:13px; font-weight:bold; margin-top:2.5mm; }
+.assinatura { width:80%; margin:8mm auto 0 auto; text-align:center; font-size:12px; font-weight:bold; }
+.linha-assinatura { width:100%; border-bottom:1px solid #000; height:15px; margin-bottom:1mm; }
+.corte { width:100%; border-top:1px dashed #000; height:8mm; margin:2mm 0 1mm 0; position:relative; }
+.corte span { position:absolute; left:0; top:-10px; background:#fff; padding-right:4px; font-size:18px; }
+.botoes { display:flex; justify-content:center; gap:12px; margin-top:12px; }
+button { border:1px solid #000; border-radius:5px; background:#000; color:#fff; padding:10px 22px; font-size:14px; cursor:pointer; }
+button.limpar { background:#fff; color:#000; }
+@media print {
+ body { background:#fff; }
+ .folha { max-width:none; width:100%; }
+ .botoes { display:none; }
+ input { color:#000; }
+}
+</style>
+</head>
+<body>
+<div class="folha">
+
+<!-- RECIBO 1 -->
+<div class="recibo">
+<div class="titulo">RECIBO DO INDICADOR</div>
+
+<div class="linha">
+<div class="data">DATA:<input class="linha-input" type="text" style="width:100px;"></div>
+<div class="valor">VALOR:<input class="linha-input" type="text"></div>
+</div>
+
+<div class="campo">INDICADOR:<input class="linha-input indicador-linha" type="text"></div>
+
+<div class="linha">
+<div class="cpf">CPF:<input class="linha-input" type="text"></div>
+<div class="telef">TELF:<input class="linha-input" type="text"></div>
+</div>
+
+<div class="campo endereco">END.:<input class="linha-input" type="text"></div>
+
+<div class="linha">
+<div class="cidade">CIDADE:<input class="linha-input" type="text"></div>
+<div class="estado">ESTADO:<input class="linha-input" type="text"></div>
+<div class="vendedor">VENDEDOR:<input class="linha-input" type="text"></div>
+</div>
+
+<div class="pix-titulo">PIX</div>
+<table class="pix-tabela">
+<thead><tr><th>TITULAR</th><th>TIPO</th><th>CHAVE</th></tr></thead>
+<tbody><tr><td><input class="pix-input" type="text"></td><td><input class="pix-input" type="text"></td><td><input class="pix-input" type="text"></td></tr></tbody>
+</table>
+<div class="pix-observacao">(CPF, celular, etc..)</div>
+
+<div class="clientes-titulo">RELACIONAR NOME(S) DO(S) CLIENTE(S)</div>
+<table class="clientes">
+<thead><tr><th>NOME</th><th>CIDADE</th><th>Nº COLCHÃO</th></tr></thead>
+<tbody>
+<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+</tbody>
+</table>
+<div class="aviso">Só pagaremos a comissão do indicador se estiver preenchido corretamente.</div>
+<div class="assinatura"><div class="linha-assinatura"></div>ASSINATURA DO INDICADOR (NOME COMPLETO)</div>
+</div>
+
+<div class="corte"><span>✂</span></div>
+
+<!-- RECIBO 2 -->
+<div class="recibo">
+<div class="titulo">RECIBO DO INDICADOR</div>
+
+<div class="linha">
+<div class="data">DATA:<input class="linha-input" type="text" style="width:100px;"></div>
+<div class="valor">VALOR:<input class="linha-input" type="text"></div>
+</div>
+
+<div class="campo">INDICADOR:<input class="linha-input indicador-linha" type="text"></div>
+
+<div class="linha">
+<div class="cpf">CPF:<input class="linha-input" type="text"></div>
+<div class="telef">TELF:<input class="linha-input" type="text"></div>
+</div>
+
+<div class="campo endereco">END.:<input class="linha-input" type="text"></div>
+
+<div class="linha">
+<div class="cidade">CIDADE:<input class="linha-input" type="text"></div>
+<div class="estado">ESTADO:<input class="linha-input" type="text"></div>
+<div class="vendedor">VENDEDOR:<input class="linha-input" type="text"></div>
+</div>
+
+<div class="pix-titulo">PIX</div>
+<table class="pix-tabela">
+<thead><tr><th>TITULAR</th><th>TIPO</th><th>CHAVE</th></tr></thead>
+<tbody><tr><td><input class="pix-input" type="text"></td><td><input class="pix-input" type="text"></td><td><input class="pix-input" type="text"></td></tr></tbody>
+</table>
+<div class="pix-observacao">(CPF, celular, etc..)</div>
+
+<div class="clientes-titulo">RELACIONAR NOME(S) DO(S) CLIENTE(S)</div>
+<table class="clientes">
+<thead><tr><th>NOME</th><th>CIDADE</th><th>Nº COLCHÃO</th></tr></thead>
+<tbody>
+<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+</tbody>
+</table>
+<div class="aviso">Só pagaremos a comissão do indicador se estiver preenchido corretamente.</div>
+<div class="assinatura"><div class="linha-assinatura"></div>ASSINATURA DO INDICADOR (NOME COMPLETO)</div>
+</div>
+
+<div class="botoes">
+<button onclick="window.print()">🖨️ IMPRIMIR</button>
+<button class="limpar" onclick="limparFormulario()">LIMPAR</button>
+</div>
+</div>
+
+<script>
+function limparFormulario() {
+document.querySelectorAll("input").forEach(function(campo) { campo.value = ""; });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comissões do Vendedor</title>
+
+<style>
+@page {
+    size: A4 portrait;
+    margin: 8mm;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #000;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.folha {
+    width: 100%;
+    max-width: 194mm;
+    margin: auto;
+}
+
+.formulario {
+    width: 100%;
+    padding: 2mm;
+}
+
+.titulo {
+    width: 100%;
+    min-height: 11mm;
+    border: 1px solid #999;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 5mm;
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5mm;
+}
+
+.nome {
+    width: 72%;
+}
+
+.codigo {
+    width: 28%;
+}
+
+.campo-header {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.campo-header input {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background: transparent;
+    height: 22px;
+    margin-left: 5px;
+    padding: 0 2px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+}
+
+.nome input {
+    width: calc(100% - 55px);
+}
+
+.codigo input {
+    width: calc(100% - 70px);
+}
+
+/* TABELA */
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.tabela th,
+.tabela td {
+    border: 1px solid #000;
+    vertical-align: middle;
+}
+
+.tabela th {
+    height: 8mm;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    padding: 0 5px;
+}
+
+.tabela th:nth-child(1) {
+    width: 68%;
+}
+
+.tabela th:nth-child(2) {
+    width: 32%;
+}
+
+.tabela td {
+    height: 9mm;
+    padding: 0 4px;
+}
+
+.tabela input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+    padding: 0 2px;
+}
+
+.instrução {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 3mm;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+button {
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    padding: 10px 22px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button.limpar {
+    background: #fff;
+    color: #000;
+}
+
+@media print {
+    body {
+        background: #fff;
+    }
+
+    .folha {
+        max-width: none;
+        width: 100%;
+    }
+
+    .botoes,
+    .instrução {
+        display: none;
+    }
+
+    input {
+        color: #000;
+    }
+
+    .tabela {
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: avoid;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="folha">
+
+<div class="formulario">
+
+    <div class="titulo">
+        COMISSÕES DO VENDEDOR
+    </div>
+
+    <div class="cabecalho">
+
+        <div class="nome campo-header">
+            NOME:
+            <input type="text" id="nomeVendedor">
+        </div>
+
+        <div class="codigo campo-header">
+            CÓDIGO:
+            <input type="text" id="codigoVendedor">
+        </div>
+
+    </div>
+
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>CLIENTE</th>
+                <th>NÚMERO DO COLCHÃO</th>
+            </tr>
+        </thead>
+
+        <tbody id="linhas">
+            <tr>
+                <td>
+                    <input type="text" class="cliente">
+                </td>
+                <td>
+                    <input type="text" class="colchao">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="instrução">
+        Ao preencher a última linha, uma nova linha será criada automaticamente.
+    </div>
+
+    <div class="botoes">
+        <button onclick="window.print()">🖨️ IMPRIMIR</button>
+        <button class="limpar" onclick="limparFormulario()">LIMPAR</button>
+    </div>
+
+</div>
+
+</div>
+
+<script>
+const linhas = document.getElementById("linhas");
+
+function criarLinha() {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+        <td>
+            <input type="text" class="cliente">
+        </td>
+        <td>
+            <input type="text" class="colchao">
+        </td>
+    `;
+
+    linhas.appendChild(tr);
+    configurarCampos(tr);
+}
+
+function configurarCampos(tr) {
+    const campos = tr.querySelectorAll("input");
+
+    campos.forEach(campo => {
+        campo.addEventListener("input", verificarUltimaLinha);
+    });
+}
+
+function verificarUltimaLinha() {
+    const todas = linhas.querySelectorAll("tr");
+    const ultima = todas[todas.length - 1];
+
+    const campos = ultima.querySelectorAll("input");
+    const algumPreenchido = Array.from(campos).some(campo => campo.value.trim() !== "");
+
+    if (algumPreenchido) {
+        criarLinha();
+    }
+}
+
+/* Configura a primeira linha */
+configurarCampos(linhas.querySelector("tr"));
+
+function limparFormulario() {
+    document.getElementById("nomeVendedor").value = "";
+    document.getElementById("codigoVendedor").value = "";
+
+    linhas.innerHTML = `
+        <tr>
+            <td>
+                <input type="text" class="cliente">
+            </td>
+            <td>
+                <input type="text" class="colchao">
+            </td>
+        </tr>
+    `;
+
+    configurarCampos(linhas.querySelector("tr"));
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenkoflex Contatos</title>
+<style>
+:root {
+--primary: #2563eb;
+--whatsapp: #25d366;
+--whatsapp-hover: #22bf5b;
+--bg-color: #f8fafc;
+--card-bg: #ffffff;
+--text-main: #1e293b;
+--text-muted: #64748b;
+--border-color: #e2e8f0;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+background-color: var(--bg-color);
+color: var(--text-main);
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+.container {
+width: 100%;
+max-width: 500px;
+background-color: var(--card-bg);
+border-radius: 12px;
+box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+padding: 24px;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+h1 {
+font-size: 1.5rem;
+text-align: center;
+color: var(--text-main);
+margin-bottom: 5px;
+}
+
+.subtitle {
+text-align: center;
+color: var(--text-muted);
+font-size: 0.9rem;
+margin-bottom: 10px;
+}
+
+.contacts-list {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.contact-card {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 16px;
+background-color: #f8fafc;
+border: 1px solid var(--border-color);
+border-radius: 10px;
+transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.contact-info {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.contact-name {
+font-size: 1.1rem;
+font-weight: 700;
+color: var(--text-main);
+}
+
+.contact-phone {
+font-size: 0.9rem;
+color: var(--text-muted);
+}
+
+.btn-whatsapp {
+display: flex;
+align-items: center;
+gap: 8px;
+background-color: var(--whatsapp);
+color: white;
+text-decoration: none;
+padding: 10px 16px;
+border-radius: 8px;
+font-weight: 600;
+font-size: 0.95rem;
+transition: background-color 0.2s, transform 0.1s;
+box-shadow: 0 2px 5px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+background-color: var(--whatsapp-hover);
+}
+
+.btn-whatsapp:active {
+transform: scale(0.98);
+}
+
+.whatsapp-icon {
+width: 20px;
+height: 20px;
+fill: currentColor;
+}
+
+.back-link {
+text-align: center;
+margin-top: 10px;
+}
+
+.back-link a {
+color: var(--primary);
+text-decoration: none;
+font-size: 0.9rem;
+font-weight: 600;
+}
+
+.back-link a:hover {
+text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Kenkoflex Contatos</h1>
+<div class="subtitle">Clique no botão do WhatsApp para iniciar a conversa</div>
+
+<div class="contacts-list">
+
+<!-- Contato 1: Sílvio -->
+<div class="contact-card">
+<div class="contact-info">
+<span class="contact-name">Sílvio</span>
+<span class="contact-phone">(62) 9979-3340</span>
+</div>
+<a class="btn-whatsapp" href="https://wa.me/556299793340?text=Olá,%20Sílvio,%20gostaria%20de%20falar%20sobre%20a%20Kenkoflex." target="_blank" rel="noopener noreferrer">
+<svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+<span>Falar</span>
+</a>
+</div>
+
+<!-- Contato 2: Janaina -->
+<div class="contact-card">
+<div class="contact-info">
+<span class="contact-name">Janaina</span>
+<span class="contact-phone">(62) 9922-5549</span>
+</div>
+<a class="btn-whatsapp" href="https://wa.me/556299225549?text=Olá,%20Janaina,%20gostaria%20de%20falar%20sobre%20a%20Kenkoflex." target="_blank" rel="noopener noreferrer">
+<svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+<span>Falar</span>
+</a>
+</div>
+
+</div>
+
+<div class="back-link">
+<a href="index.html">← Voltar ao Início</a>
+</div>
+</div>
+
+</body>
+</html>

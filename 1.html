@@ -18,7 +18,7 @@ size: A4 landscape;
 margin: 8mm;
 }
 
-• {
+* {
 box-sizing: border-box;
 }
 
@@ -81,6 +81,7 @@ display: inline-block;
 border-bottom: 1px solid #000;
 height: 17px;
 margin-left: 4px;
+position: relative;
 }
 
 .linha-vendedor {
@@ -93,6 +94,30 @@ width: 85px;
 
 .linha-mes {
 width: 145px;
+}
+
+.cabecalho-input {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: none;
+outline: none;
+background: transparent;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+font-weight: normal;
+padding: 0 2px;
+text-align: left;
+}
+
+.campo.codigo .cabecalho-input {
+text-align: center;
+}
+
+.campo.mes .cabecalho-input {
+text-align: left;
 }
 
 /* =========================================================
@@ -207,7 +232,7 @@ align-items: center;
 gap: 12px;
 
 margin-top: 20px;
-margin-bottom: 20px;
+margin-bottom: 10px;
 }
 
 button {
@@ -226,6 +251,24 @@ cursor: pointer;
 button.limpar {
 background: #fff;
 color: #000;
+}
+
+.back-link {
+text-align: center;
+margin-top: 10px;
+margin-bottom: 20px;
+}
+
+.back-link a {
+color: #2563eb;
+text-decoration: none;
+font-size: 14px;
+font-weight: 600;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-link a:hover {
+text-decoration: underline;
 }
 
 /* =========================================================
@@ -264,11 +307,6 @@ width: 85px;
 width: 150px;
 }
 
-/*
-No celular a tabela mantém o tamanho correto
-e pode ser deslizada horizontalmente.
-*/
-
 .tabela-container {
 overflow-x: auto;
 }
@@ -305,7 +343,8 @@ width: 100%;
 min-width: 0;
 }
 
-.botoes {
+.botoes,
+.back-link {
 display: none;
 }
 
@@ -343,17 +382,23 @@ CABEÇALHO
 
 <div class="campo">
 VENDEDOR:
-<span class="linha linha-vendedor"></span>
+<span class="linha linha-vendedor">
+<input type="text" class="cabecalho-input">
+</span>
 </div>
 
 <div class="campo codigo">
 CÓDIGO:
-<span class="linha linha-codigo"></span>
+<span class="linha linha-codigo">
+<input type="text" class="cabecalho-input">
+</span>
 </div>
 
 <div class="campo mes">
 MÊS:
-<span class="linha linha-mes"></span>
+<span class="linha linha-mes">
+<input type="text" class="cabecalho-input">
+</span>
 </div>
 
 </div>
@@ -378,53 +423,18 @@ CASAL 1,38
 Casal 1,38
 </td>
 
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
-
-<td class="codigo-coluna">
-<input class="codigo-input" maxlength="5">
-</td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
+<td class="codigo-coluna"><input class="codigo-input" maxlength="5"></td>
 
 </tr>
 
@@ -630,7 +640,7 @@ Quem cuida das coisas relacionadas a empresa merece confiança e respeito,nos aj
 </div>
 
 <div class="direcao">
-À direção   S.R colchões
+À direção   S.R colchões
 </div>
 
 <!-- ===================================================
@@ -647,6 +657,10 @@ BOTÕES
 LIMPAR
 </button>
 
+</div>
+
+<div class="back-link">
+<a href="index.html">← Voltar ao Início</a>
 </div>
 
 </div>

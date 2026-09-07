@@ -188,6 +188,39 @@ height: 16px;
 fill: currentColor;
 }
 
+.botoes {
+display: flex;
+justify-content: center;
+gap: 12px;
+margin-top: 10px;
+}
+
+button {
+border: 1px solid #000;
+border-radius: 6px;
+background: #000;
+color: #fff;
+padding: 10px 22px;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+transition: background-color 0.2s;
+}
+
+button:hover {
+background: #333;
+}
+
+button.limpar {
+background: #fff;
+color: #000;
+border-color: var(--border-color);
+}
+
+button.limpar:hover {
+background: #f1f5f9;
+}
+
 .back-link {
 text-align: center;
 margin-top: 10px;
@@ -202,6 +235,37 @@ font-weight: 600;
 
 .back-link a:hover {
 text-decoration: underline;
+}
+
+@media print {
+body {
+background-color: #fff;
+padding: 0;
+}
+.container {
+box-shadow: none;
+padding: 0;
+max-width: 100%;
+}
+.botoes, .back-link {
+display: none;
+}
+input, textarea {
+border: none;
+border-bottom: 1px solid #000;
+border-radius: 0;
+padding: 4px 0;
+background: transparent;
+}
+.checkbox-grid {
+border: none;
+background: transparent;
+padding: 0;
+}
+.support-card {
+border: 1px solid #ccc;
+break-inside: avoid;
+}
 }
 
 @media (max-width: 500px) {
@@ -231,7 +295,7 @@ justify-content: center;
 <div class="container">
 <h1>Diário de Bordo do Veículo</h1>
 
-<form onsubmit="event.preventDefault();">
+<form id="diarioForm" onsubmit="event.preventDefault();">
 <!-- DADOS GERAIS -->
 <div class="form-grid">
 <div class="input-group">
@@ -341,10 +405,23 @@ O carro apresenta alguma avaria? (Faróis queimados, palhetas, piscas, etc.)
 </a>
 </div>
 
+<!-- BOTÕES DE AÇÃO -->
+<div class="botoes">
+<button onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+<button class="limpar" onclick="limparFormulario()">Limpar</button>
+</div>
+
 <div class="back-link">
 <a href="index.html">← Voltar ao Início</a>
 </div>
 </div>
+
+<script>
+function limparFormulario() {
+document.getElementById('diarioForm').reset();
+document.getElementById('qualAvaria').disabled = true;
+}
+</script>
 
 </body>
 </html>
